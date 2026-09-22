@@ -1,7 +1,7 @@
 /*
  * Host regression for the extracted Clouds cloudverb.
  *
- * Compares effects/cloudverb/implementation/cloudverb.h against the frozen 3.0 oracle
+ * Compares effects/reverb/cloudverb/implementation/cloudverb.h against the frozen 3.0 oracle
  * on deterministic vectors: zero, impulse, constant, full-scale ±,
  * and a short noise-like ramp. Any algorithm drift fails the test.
  */
@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "../../effects/cloudverb/implementation/cloudverb.h"
+#include "../../effects/reverb/cloudverb/implementation/cloudverb.h"
 #include "cloudverb_oracle.h"
 
 #define BLK 256u

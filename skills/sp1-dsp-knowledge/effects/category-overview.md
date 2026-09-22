@@ -16,5 +16,5 @@ Category stubs:
 - [`dynamics/`](dynamics/)
 - [`experimental/`](experimental/)
 - [`flanger/`](flanger/)
-- [`cloudverb/`](cloudverb/)
+- [`reverb/cloudverb/`](reverb/cloudverb/)
 - [`tape/`](tape/)
