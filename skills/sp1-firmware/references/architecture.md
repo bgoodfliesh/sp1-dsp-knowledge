@@ -347,11 +347,7 @@ project(sp1_firmware)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 target_sources(app PRIVATE
-    src/main.c
-    src/audio.c
-    src/storage.c
-    src/controls.c
-    # ... module files
+    # firmware module sources
 )
 
 target_include_directories(app PRIVATE
@@ -451,7 +447,7 @@ The DSP boundary between firmware and DSP modules is defined by:
 4. **Numerical constraints**: Q16 fixed-point only (no float on audio path)
 5. **Storage format**: Unconventional byte layout (must be preserved exactly)
 
-See `sp1-dsp-engineering/` for DSP-specific design guidance.
+See `skills/sp1-dsp-engineering/` for DSP-specific design guidance.
 
 Firmware **does not** define DSP algorithms. Firmware provides the stable boundary on which DSP operates.
 

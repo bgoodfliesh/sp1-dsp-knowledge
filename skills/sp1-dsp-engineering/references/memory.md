@@ -20,14 +20,14 @@ For each audio DSP component:
 - [ ] **Persistent state sized** — reverb tails, delay buffers, coefficient history; measured in bytes
 - [ ] **Temporary state sized** — accumulators, interpolation state, per-block scratch; bounded and pre-allocated
 - [ ] **Per-channel state identified** — if stereo, is state duplicated per channel or shared?
-- [ ] **Shared state identified** — overlapping buffers (e.g., echo + reverb on one 4608-sample line per REFACTOR_PLAN.md), lookup tables, coefficients
+- [ ] **Shared state identified** — overlapping buffers, lookup tables, coefficients
 - [ ] **Lookup table cost identified** — table size, precision, update frequency (static or dynamic recomputation)
 - [ ] **Buffer lifetime identified** — does buffer exist for the lifetime of the component, for a session, or per-block?
 - [ ] **Stack requirements identified** — how much stack does the audio function use? Does it call other functions? (audio thread is RAM-only; stack space is limited)
 - [ ] **Flash cost identified** — code size, read-only data (e.g., coefficient tables); measured via `-Os` build
 - [ ] **No dynamic allocation** — all memory is pre-allocated or on stack; no `malloc()` in audio path
 
-## Known Constraints from REFACTOR_PLAN.md
+## Known Constraints
 
 - **Shared reverb/echo buffer**: 4,608 samples (9,216 B), 16-bit samples, shared between reverb and echo effects; a second delay line does not fit the original budget without dropping something else (see "Rejected shapes")
 - **Ring buffers**: RING_SAMPLES = RRING_SAMPLES = 8192 per direction, sized for play/rec buffering; do not retune alignment or size as refactor work
@@ -35,8 +35,6 @@ For each audio DSP component:
 - **No float on audio path**: Q16 fixed-point; saves memory compared to 32-bit float per sample, but requires explicit scaling and saturation
 
 ## Example: Reverb State (Phase 2b)
-
-From `REFACTOR_PLAN.md`:
 
 ```
 Reverb struct:

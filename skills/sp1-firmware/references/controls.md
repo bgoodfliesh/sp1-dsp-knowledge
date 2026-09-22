@@ -217,7 +217,7 @@ Audio coefficient/state update
 Audio path (DSP uses precomputed coefficients)
 ```
 
-See `sp1-dsp-engineering/parameters.md` for parameter engineering discipline.
+See `skills/sp1-dsp-engineering/references/parameters.md` for parameter engineering discipline.
 
 The audio thread should **not** read raw ADC values or perform expensive parameter calculations. Those happen on the control boundary.
 

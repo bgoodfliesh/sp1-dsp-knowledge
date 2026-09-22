@@ -262,7 +262,7 @@ compute_filter_coefficients(my_effect_params);
 sp1_dsp_set_processor(my_effect_process, my_effect_params);
 ```
 
-See `sp1-dsp-engineering/parameters.md` for parameter engineering discipline.
+See `skills/sp1-dsp-engineering/references/parameters.md` for parameter engineering discipline.
 
 ## Storage API
 

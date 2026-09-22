@@ -57,7 +57,7 @@ Example: "The CS42L42 codec is at I2C address 0x48, SCL=P1.11, SDA=P1.07, reset=
 - What are Q16 constraints?
 - How does the ring buffer prevent underruns?
 
-Cross-reference `sp1-dsp-engineering/audio-model.md` for DSP implications.
+Cross-reference `skills/sp1-dsp-engineering/references/audio-model.md` for DSP implications.
 
 ### For Storage and Streaming
 
@@ -78,7 +78,7 @@ Understand that audio thread **never** directly accesses eMMC.
 - How should debouncing work?
 - What is the ADC window for Track 1?
 
-Cross-reference with `sp1-dsp-engineering/parameters.md` for parameter mapping.
+Cross-reference with `skills/sp1-dsp-engineering/references/parameters.md` for parameter mapping.
 
 ### For Bluetooth
 
@@ -125,21 +125,11 @@ Examples:
 
 | Firmware Reference | DSP Reference | Topic |
 |---|---|---|
-| `audio.md` (48 kHz stereo, Q16) | `sp1-dsp-engineering/audio-model.md` | Hardware assumptions |
-| `audio.md` (hard real-time) | `sp1-dsp-engineering/realtime.md` | Real-time safety |
-| `controls.md` (parameter mapping) | `sp1-dsp-engineering/parameters.md` | Parameter engineering |
-| `storage.md` (unconventional bytes) | `sp1-dsp-engineering/numeric.md` | Numerical handling |
-| `architecture.md` (layers, APIs) | `sp1-dsp-engineering/implementation-patterns/` | Module structure |
-
-### `sp1-firmware` → `sp1-dsp`
-
-`sp1-dsp` contains **validated implementations and algorithms** for components that run on the firmware boundary.
-
-Examples:
-
-- Reverb algorithm → `sp1-dsp/dsp/reverb/` (source, tests, benchmarks)
-- Codec implementations → `sp1-dsp/storage/codecs/` (A7, µ-law, IMA)
-- Filter libraries → `sp1-dsp/filters/` (state, coefficients, validation)
+| `audio.md` (48 kHz stereo, Q16) | `skills/sp1-dsp-engineering/references/audio-model.md` | Hardware assumptions |
+| `audio.md` (hard real-time) | `skills/sp1-dsp-engineering/references/realtime.md` | Real-time safety |
+| `controls.md` (parameter mapping) | `skills/sp1-dsp-engineering/references/parameters.md` | Parameter engineering |
+| `storage.md` (unconventional bytes) | `skills/sp1-dsp-engineering/references/numeric.md` | Numerical handling |
+| `architecture.md` (layers, APIs) | `skills/sp1-dsp-engineering/SKILL.md` | Module structure |
 
 ## Evidence Model
 
@@ -199,7 +189,7 @@ Do not allow multiple modules to independently configure shared peripherals (cod
 
 Audio path uses Q16 fixed-point, not floating-point, even though the Cortex-M4F has an FPU.
 
-Do not introduce float into audio processing. It is explicitly rejected in `sp1-dsp-engineering/SKILL.md`.
+Do not introduce float into audio processing. It is explicitly rejected in `skills/sp1-dsp-engineering/SKILL.md`.
 
 ### 5. Preserve Proven Behavior
 
@@ -424,23 +414,12 @@ Includes:
 
 Covers DSP implementation strategy, real-time engineering, numerical behavior, validation, and optimization **for the SP-1 firmware boundary**.
 
-See `sp1-dsp-engineering/SKILL.md` for:
+See `skills/sp1-dsp-engineering/SKILL.md` for:
 - Q16 fixed-point constraints
 - Real-time audio path rules
 - Numerical stability and approximation
 - Optimization hierarchy
 - Validation discipline
-
-### sp1-dsp
-
-Accumulated DSP knowledge, algorithms, implementations, tests, benchmarks, and provenance independent of the firmware.
-
-Consult before implementing:
-- Reverb
-- Filters
-- Codecs
-- Tape effects
-- Any other DSP algorithm
 
 ## When to Consult This Knowledge Block
 
@@ -455,7 +434,7 @@ You should consult `sp1-firmware`:
 - ✓ "How should firmware be layered?"
 - ✓ "What does the RESETREAS register track?"
 
-You should consult `sp1-dsp-engineering` instead:
+You should consult `skills/sp1-dsp-engineering` instead:
 
 - ✗ "How do I implement a filter with Q16 arithmetic?"
 - ✗ "What is a lookup table approximation?"

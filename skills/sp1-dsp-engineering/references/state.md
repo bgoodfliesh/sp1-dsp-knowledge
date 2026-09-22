@@ -33,10 +33,10 @@ When adapting existing, proven DSP (e.g., reverb from Phase 2b):
 
 The tape-looper streamer ring exemplifies shared state design:
 
-- **Owner**: `streamer.inc` / future `streamer.c`
+- **Owner**: The streamer module
 - **State**: ring write/read pointers, sample count, aligned start address
-- **Contract**: defined in `storage/ring_contract.h` (producer-consumer rules, atom ordering, no types/code)
-- **Access from audio thread**: audio reads via a narrow API (`streamer_thread_handle()`, not raw globals)
+- **Contract**: Producer-consumer rules and atomic ordering must be documented at the module boundary
+- **Access from audio thread**: audio reads through a narrow module API, not raw globals
 - **Access from streamer thread**: sole owner, full access
 
 This design preserves the audio-never-accesses-eMMC invariant while allowing audio to read play head via a volatile read.

@@ -93,14 +93,12 @@ Status: (example; fill in actual results once measured on SP-1)
 
 ## Existing SP-1 Validated Components
 
-From REFACTOR_PLAN.md (Phase 2b, 3a):
-
-- **Reverb (`dsp/reverb.h`)**: Clouds-derived 12 kHz reverb
-  - Validation: `test_reverb` host test, bit-identical to frozen 3.0 oracle on every vector
+- **Reverb**: Validate against a stable reference implementation
+  - Validation: Host test against a stable reference, with bit-identical output where required
   - Status: `SP1-TESTED` (host-only; hardware listen test pending)
 
-- **Codecs (`storage/codec_{a7,ulaw,ima}.h`)**: SP1-ADPCM7, G.711 µ-law, IMA ADPCM
-  - Validation: `test_codec` host test, exhaustive vectors (A7: 128 codes, µ-law: 65k encode + 256 decode)
+- **Codecs**: SP1-ADPCM7, G.711 µ-law, IMA ADPCM
+  - Validation: Host tests with exhaustive vectors appropriate to each codec
   - Status: `SP1-TESTED` (host-only; hardware listen test pending)
 
 When adapting or reusing these, inherit their validation: run the same host tests, confirm bit-identical output.

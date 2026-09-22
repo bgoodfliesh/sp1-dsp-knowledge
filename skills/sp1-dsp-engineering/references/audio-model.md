@@ -3,7 +3,7 @@
 ## Verified Hardware Context
 
 - **Sample rate**: 48 kHz (working assumption; I2S transport confirms audio rate, specific value to be verified from device firmware)
-- **Channels**: Stereo DSP path (confirmed in REFACTOR_NOTES.md)
+- **Channels**: Stereo DSP path
 - **Transport**: I2S, 256-frame audio blocks
 - **Firmware**: Zephyr-based (4.3.1 as of baseline)
 - **Threading**: Audio thread (I2S, highest app priority, RAM-only); separate streamer/eMMC/MIDI/main threads
@@ -11,7 +11,7 @@
 
 ## Non-Negotiable Audio-Path Constraint
 
-**Audio DSP uses Q16 fixed-point arithmetic.** From REFACTOR_PLAN.md: *"There is no float on the audio path. Speed is already Q16."*
+**Audio DSP uses Q16 fixed-point arithmetic.**
 
 When implementing or adapting DSP:
 - Preserve Q16 scaling and saturation.
@@ -35,4 +35,4 @@ Every DSP component must explicitly document:
 - **RAM cost** — state size, temporary buffers, no dynamic allocation in audio path
 - **Reset behavior** — state on reset, bypass behavior, edge cases
 
-Status: REFERENCE (audio model); Q16 constraint verified from REFACTOR_PLAN.md; sample rate TBD (likely 48 kHz, see cpumd for measurement discipline)
+Status: REFERENCE (audio model); Q16 constraint established; sample rate TBD

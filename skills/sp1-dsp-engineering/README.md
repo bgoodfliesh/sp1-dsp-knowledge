@@ -108,8 +108,8 @@ Each reference file is a discipline guide and checklist for a specific DSP conce
 ## Sourcing
 
 - **Hardware and threading**: nRF52840, Zephyr-based firmware, I2S audio transport, 256-frame blocks
-- **Constraints and non-negotiables**: Tape-looper firmware (`REFACTOR_PLAN.md`, "Non-negotiable invariants" and "Rejected shapes" sections)
-- **Proven implementations**: Reverb (Phase 2b, `dsp/reverb.h`), Codecs (Phase 3a, `storage/codec_{a7,ulaw,ima}.h`)
+- **Constraints and non-negotiables**: The firmware's documented real-time, storage, and DSP invariants
+- **Proven implementations**: Existing firmware DSP and codec implementations, when available
 - **Measurement discipline**: Distinction between THEORETICAL ESTIMATE, DESKTOP BENCHMARK, COMPILED SP-1, HARDWARE-MEASURED
 
 ## About This Skill
@@ -117,8 +117,6 @@ Each reference file is a discipline guide and checklist for a specific DSP conce
 This skill is **not** a generic DSP textbook. It is **not** the accumulated DSP implementation library.
 
 Its job is to teach an AI (or a human) to reason about DSP design on constrained, real-time hardware; to respect the actual architecture and invariants of the SP-1 firmware; and to validate work before claiming it is correct.
-
-The separate `sp1-dsp` repository (not included here) contains validated algorithms, implementations, tests, benchmarks, provenance, and accumulated DSP knowledge independent of the firmware. Consult it before creating new implementations.
 
 ### Status
 

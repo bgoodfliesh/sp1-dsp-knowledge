@@ -4,7 +4,7 @@
 
 Numerical representation, stability, precision, and failure behavior for Q16 fixed-point DSP on the SP-1.
 
-**Audio-path DSP must use Q16 fixed-point.** (See audio-model.md; from REFACTOR_PLAN.md: *"There is no float on the audio path. Speed is already Q16."*)
+**Audio-path DSP must use Q16 fixed-point.** (See audio-model.md.)
 
 ## Q16 Fixed-Point Format
 
@@ -73,9 +73,7 @@ When adapting an algorithm from floating-point reference code:
 
 ## Known Fixed-Point Implementations
 
-- **Reverb (Phase 2b)**: `dsp/reverb.h`, state on `Reverb` struct, tested bit-identical to frozen 3.0 oracle
-- **Codecs (Phase 3a)**: `storage/codec_a7.h`, `codec_ulaw.h`, `codec_ima.h`; exhaustive test vectors vs frozen oracles
-- **Tape effects**: TBD (not yet extracted; consult original-main.c for reference implementation)
+- **Reverb and codecs**: Preserve the existing implementation and validate any adaptation against a stable reference.
 
 Preserve Q16 format when extracting or adapting these.
 

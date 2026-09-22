@@ -6,8 +6,6 @@ Rules for code executed in the SP-1 audio path (I2S callback, audio thread).
 
 ## Non-Negotiable Rules
 
-From `REFACTOR_PLAN.md` ("Non-negotiable invariants"):
-
 - **Audio never accesses eMMC.** The streamer thread is the sole eMMC owner. Audio operates on in-RAM ring buffers.
 - **No filesystem/storage/UI/MIDI operations in audio callback.** Exception: explicit, documented, bounded cross-thread communication via `volatile` mailboxes (not `k_msgq`), existing in Phase 0 architecture.
 - **No dynamic allocation in the audio path.** All state, buffers, and coefficients are pre-allocated or stack-based.

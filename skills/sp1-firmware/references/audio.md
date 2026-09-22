@@ -126,7 +126,7 @@ This interleaving pattern must be preserved for compatibility with saved session
 
 Audio samples and processing use **Q16 fixed-point arithmetic** throughout the audio path.
 
-From `sp1-dsp-engineering/numeric.md`:
+From `skills/sp1-dsp-engineering/references/numeric.md`:
 - Q16 = 16 integer bits + 16 fractional bits (signed 32-bit)
 - Range: −32,768.0 to +32,767.999...
 - Typical audio uses ±1.0 mapped to ±65536
@@ -137,7 +137,7 @@ When converting from storage (typically 24-bit) to Q16:
 24-bit sample → left-shift to Q16 equivalent
 ```
 
-Do not introduce floating-point arithmetic on the audio path. This is a non-negotiable constraint (see `sp1-dsp-engineering/SKILL.md` "Critical Audio-Path Constraint").
+Do not introduce floating-point arithmetic on the audio path. This is a non-negotiable constraint (see `skills/sp1-dsp-engineering/SKILL.md` "Critical Audio-Path Constraint").
 
 ## Streamer Architecture
 
@@ -162,13 +162,13 @@ Audio thread **never** directly accesses eMMC.
 
 ### Ring Buffer Contract
 
-**VERIFIED** (from REFACTOR_PLAN.md, Phase 3a)
+**VERIFIED** by the firmware audio design
 
 ```
 Ring sample sizes: RING_SAMPLES = RRING_SAMPLES = 8192
 ```
 
-Producer-consumer rules documented in `storage/ring_contract.h`:
+Producer-consumer rules for the storage ring:
 - Streamer: producer (fills ring from eMMC)
 - Audio: consumer (reads ring samples)
 - Atomicity: alignment, ordering, and synchronization guarantees
@@ -299,7 +299,7 @@ The audio system boundary interfaces with the DSP layer through:
 4. **Numerical constraints**: Q16 only, no float on audio path
 5. **Storage format**: Unconventional byte layout (must be preserved)
 
-See `sp1-dsp-engineering/` for DSP implementation guidance:
+See `skills/sp1-dsp-engineering/` for DSP implementation guidance:
 - `audio-model.md`: hardware assumptions, per-algorithm requirements
 - `realtime.md`: real-time safety rules, audit checklist
 - `numeric.md`: Q16 fixed-point, saturation, rounding

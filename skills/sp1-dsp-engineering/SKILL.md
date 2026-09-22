@@ -10,14 +10,7 @@ The primary goal is to prevent **vibe-coded DSP**: plausible-looking code that h
 
 ## Sourcing Constraints
 
-Constraints documented here come from:
-- **Tape-looper firmware source** (`sp1-tape-looper` repo, `REFACTOR_PLAN.md` / `REFACTOR_NOTES.md`)
-- **Hardware design** (Teenage Engineering SP-1 device)
-- **Measured or compiled evidence** (when available; labeled as such)
-
-Consult the tape-looper repo's `REFACTOR_PLAN.md` (especially "Non-negotiable invariants" and "Rejected shapes" sections) before proposing architecture or algorithm changes. A shape already rejected there should not be re-proposed.
-
-The separate `sp1-dsp` repository contains validated algorithms, implementations, tests, benchmarks, provenance, and accumulated DSP knowledge independent of the firmware. Consult it before creating new implementations.
+Constraints documented here come from the SP-1 hardware, firmware architecture, and measured or compiled evidence when available. Evidence that has not been measured or established by a trusted source must be labeled `UNMEASURED`.
 
 ## Verified SP-1 Hardware Context
 
@@ -26,7 +19,7 @@ The following may be treated as verified hardware facts:
 - **Processor**: Nordic nRF52840, ARM Cortex-M4F (has FPU, but see "Fixed-point constraint" below)
 - **Firmware**: Zephyr-based (4.3.1 as of Phase 0)
 - **Audio transport**: I2S, 256-frame audio blocks to the DSP
-- **Audio system**: Stereo path (confirmed in REFACTOR_NOTES.md)
+- **Audio system**: Stereo path
 - **Threading model**: audio thread (I2S, highest app priority, RAM-only), streamer (eMMC sole owner), MIDI, main/control threads
 - **Constraints**: Real-time embedded execution, no dynamic allocation in audio path, constrained CPU and RAM alongside storage/controls/MIDI/UI
 
@@ -36,7 +29,7 @@ The following may be treated as verified hardware facts:
 
 The SP-1 firmware's audio DSP uses **Q16 fixed-point arithmetic by design**, not floating-point.
 
-From `REFACTOR_PLAN.md` ("Rejected shapes"): *"There is no float on the audio path. Speed is already Q16."*
+The audio path uses Q16 fixed-point arithmetic by design.
 
 **Implication**: Even though the Cortex-M4F has an FPU, do not introduce floating-point math on the audio path. Q16 fixed-point is a non-negotiable invariant. Existing DSP implementations (reverb, codecs, tape effects) preserve this representation.
 
@@ -47,8 +40,6 @@ When adapting existing DSP or proposing new DSP:
 - Validate against floating-point reference to confirm bit-identical or acceptable error bounds.
 
 ## Audio-Path Invariants (Non-negotiable)
-
-From `REFACTOR_PLAN.md`:
 
 - Audio path stays deterministic and non-blocking.
 - Audio **never** accesses eMMC (streamer is the sole eMMC owner).
@@ -99,7 +90,7 @@ DSP implementations for the SP-1 should:
 When working with proven implementations (e.g., reverb, codecs already in the firmware):
 
 1. Preserve the existing algorithm, scaling, saturation, and rounding.
-2. Isolate the component in its own boundary (header-only in `.inc` phase, or eventual `.c`/`.h` module).
+2. Isolate the component in its own boundary (a header-only prototype or eventual `.c`/`.h` module).
 3. Adapt only what is necessary for the new ownership/API boundary.
 4. Optimize only when a bottleneck is identified on real hardware.
 
@@ -107,7 +98,7 @@ Avoid simultaneously changing algorithm, numerical representation, state design,
 
 ## Shapes Already Rejected
 
-The tape-looper refactor (`REFACTOR_PLAN.md`, "Rejected shapes" section) has already evaluated and rejected the following approaches for this firmware. Do not re-propose them:
+The following approaches are incompatible with this firmware's established architecture:
 
 - **Hermite interpolation for tape speed** — the existing rocker uses slewed linear interpolation (`posb`/`fracb`). Hermite is a sound change; existing behavior is intentional.
 - **Floating-point on audio path** — Q16 fixed-point is non-negotiable. The FPU exists but is not used for sample-rate DSP.
@@ -677,7 +668,6 @@ It teaches:
 
 It is not the implementation library.
 
-The separate `sp1-dsp` repository contains validated algorithms, implementations, source references, tests, benchmarks, provenance, and accumulated institutional knowledge.
 
 Consult it before creating new implementations.
 

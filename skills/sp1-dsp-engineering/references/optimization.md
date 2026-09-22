@@ -52,7 +52,7 @@ If a parameter changes mid-block (rare), defer the update to the next block boun
 
 ### Shared Buffers and State
 
-**Example**: Reverb and echo share one 4,608-sample delay line (REFACTOR_PLAN.md, Phase 2b).
+**Example**: Reverb and echo may share a delay line when the architecture and resource budget permit it.
 
 - CPU: one write, multiple reads from shared line
 - Memory: 9,216 B shared vs 18,432 B if separate buffers

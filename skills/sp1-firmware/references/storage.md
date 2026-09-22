@@ -35,7 +35,7 @@ Audio thread must **never** access eMMC directly. Other modules should not compe
 
 ## Ring Buffer Architecture
 
-**VERIFIED** (from tape-looper REFACTOR_PLAN.md, Phase 3a)
+**VERIFIED** from the firmware storage design
 
 ### Ring Size
 
@@ -54,7 +54,7 @@ In bytes:
 
 ### Ring Contract
 
-**VERIFIED** (documented in `storage/ring_contract.h`)
+**VERIFIED** by the storage ring contract
 
 ```
 Producer: Streamer thread (fills from eMMC)
