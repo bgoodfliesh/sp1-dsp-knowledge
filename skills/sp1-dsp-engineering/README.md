@@ -11,15 +11,16 @@ sp1-dsp-engineering/
 ├── SKILL.md              # Core skill: purpose, constraints, rejected shapes, engineering rules
 ├── README.md             # This file
 └── references/
-    ├── audio-model.md    # Hardware context, Q16 requirement, per-algorithm checklist
-    ├── realtime.md       # Audio-thread safety, non-negotiable invariants, cross-thread patterns
-    ├── state.md          # State ownership, lifecycle, preservation rules
-    ├── parameters.md     # Parameter records, control-rate separation, perceptual resolution
-    ├── numeric.md        # Q16 fixed-point, approximations, validation against float
-    ├── cpu.md            # Measurement discipline, bottleneck-first optimization, cycle budgeting
-    ├── memory.md         # RAM/flash budgeting, pre-allocation, known SP-1 constraints
-    ├── optimization.md   # Optimization hierarchy, LUT strategies, tradeoff documentation
-    └── validation.md     # Testing framework, reference comparison, status labels
+    ├── audio-model.md            # Hardware context, Q16 requirement, per-algorithm checklist
+    ├── realtime.md               # Audio-thread safety, non-negotiable invariants, cross-thread patterns
+    ├── state.md                  # State ownership, lifecycle, preservation rules
+    ├── parameters.md             # Parameter records, control-rate separation, perceptual resolution
+    ├── numeric.md                # Q16 fixed-point, approximations, validation against float
+    ├── cpu.md                    # Measurement discipline, bottleneck-first optimization, cycle budgeting
+    ├── memory.md                 # RAM/flash budgeting, pre-allocation, known SP-1 constraints
+    ├── optimization.md           # Optimization hierarchy, LUT strategies, tradeoff documentation
+    ├── architecture-optimization.md # Topology-first optimization, execution context, lifetime-aware scheduling
+    └── validation.md             # Testing framework, reference comparison, status labels
 ```
 
 ## How to Use This Skill
@@ -75,11 +76,16 @@ Each reference file is a discipline guide and checklist for a specific DSP conce
    - No dynamic allocation in audio path
 
 8. **`optimization.md`** — Optimization methodology
-   - Hierarchy: measure → remove unnecessary → reduce frequency → reuse → better algorithm → improved representation → LUT → exploit architecture
+   - Hierarchy: remove unnecessary → share → move → reduce → measure → better algorithm → improved representation → LUT → exploit architecture
    - Fixed-point embedded techniques (lookup tables, block-rate computation, shared buffers)
    - Tradeoff record template: document what each optimization gains and costs
 
-9. **`validation.md`** — Testing and proof
+9. **`architecture-optimization.md`** — Structural optimization and execution context
+   - Topological optimization before micro-optimization
+   - Realtime, control, load, background, and build/offline execution classification
+   - Shared scratch, lifetime-aware allocation, and activity-aware suspension
+
+10. **`validation.md`** — Testing and proof
    - Compilation is not validation; plausible sound is not validation
    - Test categories: numerical/reference, frequency/time domain, signal-level, state, CPU/RAM, hardware execution
    - Status labels (EXPERIMENTAL, REFERENCE-VALIDATED, SP1-TESTED, SP1-BENCHMARKED, PRODUCTION) — never claim higher than evidence supports
@@ -93,8 +99,9 @@ Each reference file is a discipline guide and checklist for a specific DSP conce
 5. **Use `numeric.md`**: Implement in Q16, validate against float reference (scipy.signal) on test signals
 6. **Use `cpu.md`**: Estimate cycles per sample, measure on real hardware if available
 7. **Use `memory.md`**: Size coefficients and state, confirm RAM budget OK
-8. **Use `optimization.md`**: Is it a bottleneck? If not, keep readable. If yes, consider LUT for expensive operations
-9. **Use `validation.md`**: Test against reference output, confirm bit-identical or error < 0.1%, flash to real SP-1 and listen
+8. **Use `optimization.md`**: Is it a bottleneck? If not, keep readable. If yes, consider topological optimization and then LUT or reduced-rate execution
+9. **Use `architecture-optimization.md`**: Confirm the execution context, shared-state lifecycle, and realtime bound before tuning the algorithm
+10. **Use `validation.md`**: Test against reference output, confirm bit-identical or error < 0.1%, flash to real SP-1 and listen
 
 ## Key Principles
 

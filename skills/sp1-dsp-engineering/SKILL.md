@@ -80,7 +80,9 @@ DSP implementations for the SP-1 should:
 10. **Measured before optimization** — identify the actual bottleneck; do not optimize what merely looks expensive
 11. **Validated before declared correct** — compilation and plausible sound are not proof
 12. **Conservative with existing implementations** — preserve proven DSP; understand before changing
-13. **Stateful by design, cautious by evidence** — small recurrent structures can create rich behavior, but require explicit lifecycle, numerical, stability, and reproducibility analysis
+13. **Topological optimization before micro-optimization** — reduce how often expensive processing occurs before tuning the remaining inner loop
+14. **Realtime execution context is part of correctness** — every callback must have a known execution context and bounded runtime
+15. **Stateful by design, cautious by evidence** — small recurrent structures can create rich behavior, but require explicit lifecycle, numerical, stability, and reproducibility analysis
 
 **Do not** optimize for code elegance. Do not rewrite functioning DSP solely to look cleaner—subtle behavior may be part of the sound.
 
@@ -694,7 +696,8 @@ Each reference file is a checklist, framework, and discipline guide for a specif
 
 9. **`validation.md`** — Test against reference implementation, measure numerical error, confirm no clicks/glitches, benchmark on real hardware. Document status (EXPERIMENTAL, REFERENCE-VALIDATED, SP1-TESTED, etc.).
 10. **`dsp-organisms.md`** — Small interacting stateful systems, nonlinear feedback, reproducibility, and failure-region analysis.
-11. **`experiments.md`** — Evidence vocabulary, experiment records, and the candidate queue for short delays, maps, approximations, and coupled systems.
+11. **`architecture-optimization.md`** — Structural optimization, execution contexts, activity-aware suspension, and topology-first optimization.
+12. **`experiments.md`** — Evidence vocabulary, experiment records, and the candidate queue for short delays, maps, approximations, and coupled systems.
 
 ### Workflow Example: Adding a New Filter
 

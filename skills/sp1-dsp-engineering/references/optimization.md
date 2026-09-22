@@ -8,16 +8,68 @@ Do not optimize code that "looks expensive." Do not assume a technique is faster
 
 ## Optimization Hierarchy
 
-1. **Measure** actual bottleneck on SP-1 hardware (DWT cycle counters, real listening tests for clicks/glitches)
-2. **Remove unnecessary work** (dead code, redundant operations, unnecessary copying, cache misses)
-3. **Reduce computation frequency** where mathematically valid (move work from audio-rate to block-rate, block-rate to control-rate)
-4. **Reuse calculations** (cache expensive results, share lookup tables, avoid redundant exp/log calls)
-5. **Choose a better algorithm** if justified by measurement (trade accuracy or latency for CPU; validate tradeoff sonically)
-6. **Improve numerical representation** if space/precision justify it (e.g., 16-bit vs 32-bit; on SP-1, audio is Q16, not float)
-7. **Lookup tables / precomputation** for expensive functions (sin, cos, exp, sqrt; validate error bounds and target cost)
-8. **Exploit target architecture** (Cortex-M4F accumulate instructions, hardware multiply-accumulate, cache-friendly layout)
-9. **Historical low-level techniques** (bit manipulation, loop unrolling, inline assembly; measure before doing; risk maintainability)
-10. **Re-measure** on SP-1 hardware after each change to confirm improvement (do not assume)
+1. **Remove the work** (dead code, redundant operations, unnecessary processing, unnecessary copies)
+2. **Share the work** (combine voices, reuse a processor, cache shared results, avoid duplicate work)
+3. **Move the work** (initialization, load time, block rate, control rate, background worker, offline preprocessing)
+4. **Reduce the work** (reduce update frequency, reduce precision, shorten state, simplify algorithm)
+5. **Measure** actual bottleneck on SP-1 hardware (DWT cycle counters, real listening tests for clicks/glitches)
+6. **Choose a better algorithm** if justified by measurement (trade accuracy or latency for CPU; validate tradeoff sonically)
+7. **Improve numerical representation** if space/precision justify it (e.g., 16-bit vs 32-bit; on SP-1, audio is Q16, not float)
+8. **Lookup tables / precomputation** for expensive functions (sin, cos, exp, sqrt; validate error bounds and target cost)
+9. **Exploit target architecture** (Cortex-M4F accumulate instructions, hardware multiply-accumulate, cache-friendly layout)
+10. **Historical low-level techniques** (bit manipulation, loop unrolling, inline assembly; measure before doing; risk maintainability)
+11. **Re-measure** on SP-1 hardware after each change to confirm improvement (do not assume)
+
+## Structural optimization before inner-loop optimization
+
+The strongest general finding from the Schwung case studies is that optimization should usually proceed from the topology outward. Before tuning a hot inner loop, ask whether an expensive processor or operation can be eliminated, shared, moved, or reduced in frequency.
+
+```text
+1. DOES THIS WORK NEED TO EXIST?
+2. DOES IT NEED TO OCCUR THIS MANY TIMES?
+3. DOES IT NEED TO HAPPEN IN REALTIME?
+4. DOES IT NEED THIS UPDATE RATE OR PRECISION?
+5. CAN THE STATE OR MEMORY LIFETIME BE REDUCED?
+6. ONLY THEN: optimize the remaining implementation
+```
+
+### Topological example
+
+```text
+stem 1 ─┐
+stem 2 ─┤
+stem 3 ─┼→ PREMIX → ONE PROCESSOR
+stem 4 ─┘
+```
+
+This can be preferable to four instances of an expensive processor in parallel when the architecture permits a single shared processor. This is not a free optimization: it changes routing semantics, nonlinear interaction, and downstream flexibility.
+
+### Generalized rule
+
+> Reduce how many times expensive work occurs before reducing the cost of each instance.
+
+## Evidence discipline for optimization claims
+
+The following should not be normalized into general SP-1 doctrine unless they are measured on the actual target and clearly sourced:
+
+- exact silence-bypass percentage savings
+- exact control-rate and sub-block percentages
+- exact RAM savings from scratch pooling or streaming
+- exact cache alignment or SIMD assumptions
+- fixed thresholds from another target
+- percentage-based claims without target workload and measurement context
+
+Promote the mechanism, not an unverified numeric claim.
+
+## Decision tree
+
+```text
+1. Remove it?                     -> yes: eliminate it
+2. Share it?                      -> yes: combine / cache / reuse
+3. Move it?                      -> yes: init / load / block / control / offline
+4. Reduce it?                    -> yes: lower rate / precision / state
+5. Make remaining work faster?   -> only after structural adjustments
+```
 
 ## Techniques for Fixed-Point Embedded Audio
 
