@@ -31,6 +31,18 @@ Start with [`sp1-dsp-engineering/SKILL.md`](sp1-dsp-engineering/SKILL.md), then
 use the focused checklists in
 [`sp1-dsp-engineering/references/`](sp1-dsp-engineering/references/).
 
+### [`sp1-ui-ux`](sp1-ui-ux/)
+
+Relational control grammar for designing coherent SP-1 instrument interfaces:
+
+- Stable physical semantics across pages
+- Functional and opposing control relationships
+- FN interaction tiers and tactile learnability
+- Experiential parameter naming and layout validation
+
+Start with [`sp1-ui-ux/SKILL.md`](sp1-ui-ux/SKILL.md), then use the focused
+guidance in [`sp1-ui-ux/references/`](sp1-ui-ux/references/).
+
 ## How to use the skills
 
 1. Read the relevant `SKILL.md` before proposing an architecture or changing
