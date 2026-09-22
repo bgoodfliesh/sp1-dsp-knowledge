@@ -1,0 +1,59 @@
+_min_copier_version: "9.0.0"
+_subdirectory: project
+
+project_name:
+  type: str
+  help: Project name (human readable)
+  default: My SP-1 Project
+
+project_slug:
+  type: str
+  help: Folder / CMake name (lowercase, hyphens ok)
+  default: "{{ project_name | lower | replace(' ', '-') | replace('_', '-') }}"
+
+author:
+  type: str
+  help: Your name or handle
+  default: SP-1 Community
+
+midi_support:
+  type: str
+  help: MIDI transport to include
+  choices:
+    - "USB only"
+    - "USB + BLE (later)"
+    - "None"
+  default: "USB only"
+
+include_example_gain:
+  type: bool
+  help: Include a simple example gain module?
+  default: true
+
+dsp_modules:
+  type: str
+  help: Which DSP modules do you want to start with? (multi-select)
+  multiselect: true
+  choices:
+    - "None (I'll add my own)"
+    - "Reverb (Clouds-derived, from tape-looper)"
+  default:
+    - "None (I'll add my own)"
+
+_message_after_copy: |
+  --------------------------------------------------
+  Project "{{ project_name }}" is ready.
+
+  Next steps:
+    cd {{ project_slug }}
+    west update          # if you use a west workspace
+    west build -b sp1
+    # Flash with solderless.engineering (Track 1 + Track 4)
+
+  Selected MIDI support: {{ midi_support }}
+  Example gain: {{ "included" if include_example_gain else "not included" }}
+  DSP modules: {{ dsp_modules | join(", ") }}
+
+  Add more modules by dropping .c files that use SP1_MODULE
+  into src/modules/ — they register automatically.
+  --------------------------------------------------

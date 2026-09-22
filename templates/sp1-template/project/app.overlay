@@ -1,0 +1,19 @@
+/* Minimal overlay — expand with full pin mux from the sp1-firmware skill */
+
+/ {
+    chosen {
+        zephyr,console = &cdc_acm_uart0;
+    };
+};
+
+&adc {
+    status = "okay";
+};
+
+&i2c0 {
+    status = "okay";
+};
+
+&i2s0 {
+    status = "okay";
+};
