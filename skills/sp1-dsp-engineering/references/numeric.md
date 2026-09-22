@@ -6,6 +6,14 @@ Numerical representation, stability, precision, and failure behavior for Q16 fix
 
 **Audio-path DSP must use Q16 fixed-point.** (See audio-model.md.)
 
+## Recursive arithmetic
+
+Bounded equations are not automatically safe in finite precision. For every
+recursive or feedback path, analyze intermediate products, rounding points,
+saturation, dead states, fixed points, and possible short cycles. Compare
+multiple initial states and parameter extremes; record any collapse or drift
+instead of hiding it behind a clamp.
+
 ## Q16 Fixed-Point Format
 
 Q16 representation: 16 integer bits + 16 fractional bits (signed 32-bit int).

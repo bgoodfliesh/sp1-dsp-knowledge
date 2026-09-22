@@ -80,6 +80,7 @@ DSP implementations for the SP-1 should:
 10. **Measured before optimization** — identify the actual bottleneck; do not optimize what merely looks expensive
 11. **Validated before declared correct** — compilation and plausible sound are not proof
 12. **Conservative with existing implementations** — preserve proven DSP; understand before changing
+13. **Stateful by design, cautious by evidence** — small recurrent structures can create rich behavior, but require explicit lifecycle, numerical, stability, and reproducibility analysis
 
 **Do not** optimize for code elegance. Do not rewrite functioning DSP solely to look cleaner—subtle behavior may be part of the sound.
 
@@ -692,6 +693,8 @@ Each reference file is a checklist, framework, and discipline guide for a specif
 8. **`optimization.md`** — Methodology for making DSP faster: measure bottleneck → reduce frequency → reuse calculations → lookup tables → exploit architecture. Do not optimize blindly.
 
 9. **`validation.md`** — Test against reference implementation, measure numerical error, confirm no clicks/glitches, benchmark on real hardware. Document status (EXPERIMENTAL, REFERENCE-VALIDATED, SP1-TESTED, etc.).
+10. **`dsp-organisms.md`** — Small interacting stateful systems, nonlinear feedback, reproducibility, and failure-region analysis.
+11. **`experiments.md`** — Evidence vocabulary, experiment records, and the candidate queue for short delays, maps, approximations, and coupled systems.
 
 ### Workflow Example: Adding a New Filter
 

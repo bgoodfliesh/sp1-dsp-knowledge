@@ -1,5 +1,10 @@
 # DSP State
 
+Small state can create rich behavior through recurrence, feedback, and
+nonlinearity. Treat that state as an owned subsystem with an explicit lifecycle,
+not as incidental local variables. Document the state transition, valid range,
+reset seed, and behavior after saturation or invalid input.
+
 ## State Categories
 
 - **Persistent**: Survives reset, session save/load (e.g., reverb tail in shared buffer, tape reels position)
@@ -11,6 +16,8 @@
 - **Bypass-related**: What happens when audio is bypassed; does state freeze, continue, or reset?
 - **Parameter-transition state**: State required to change parameters smoothly (e.g., slew accumulators, crossfade state)
 - **Sample-rate-transition state**: State required if sample rate changes (unlikely in SP-1, but document if relevant)
+- **Recurrent state**: History that intentionally affects future output; test
+  startup, reset, long-run drift, boundedness, and sensitivity to initial state
 
 ## Design Rules
 

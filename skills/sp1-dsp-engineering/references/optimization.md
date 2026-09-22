@@ -14,7 +14,7 @@ Do not optimize code that "looks expensive." Do not assume a technique is faster
 4. **Reuse calculations** (cache expensive results, share lookup tables, avoid redundant exp/log calls)
 5. **Choose a better algorithm** if justified by measurement (trade accuracy or latency for CPU; validate tradeoff sonically)
 6. **Improve numerical representation** if space/precision justify it (e.g., 16-bit vs 32-bit; on SP-1, audio is Q16, not float)
-7. **Lookup tables / precomputation** for expensive functions (sin, cos, exp, sqrt; validate error bounds)
+7. **Lookup tables / precomputation** for expensive functions (sin, cos, exp, sqrt; validate error bounds and target cost)
 8. **Exploit target architecture** (Cortex-M4F accumulate instructions, hardware multiply-accumulate, cache-friendly layout)
 9. **Historical low-level techniques** (bit manipulation, loop unrolling, inline assembly; measure before doing; risk maintainability)
 10. **Re-measure** on SP-1 hardware after each change to confirm improvement (do not assume)
@@ -28,9 +28,10 @@ Common optimizations relevant to Q16 fixed-point on constrained hardware:
 **Candidates**: sin, cos, exp, sqrt, reciprocal, nonlinear transfer functions
 
 **Trade-off**:
-- CPU: one table lookup + (optional) interpolation ≈ 10–50 cycles vs exp() ≈ 100–500 cycles
-- Memory: 256–4096-entry table (1 KB–16 KB) vs library function (shared)
-- Accuracy: limited by table resolution (e.g., 256 entries = 8-bit resolution; interpolation can improve)
+- CPU: target-dependent; a lookup, interpolation, or arithmetic approximation
+  may win depending on memory access, branches, compiler output, and update rate
+- Memory: table size and placement are measurable costs
+- Accuracy: limited by table resolution and interpolation; quantify error
 
 **Validation**: Compare table output vs reference (e.g., exp(x) in range [−10, 0]) on a test sweep; measure error and confirm inaudible
 
@@ -68,14 +69,16 @@ Pre-allocate all buffers and state at startup. No `malloc()` in audio path.
 
 ### Q16 Saturation and Rounding
 
-Use ARM Cortex-M4 `__SSAT()` (signed saturate) to clip Q16 values to [−32768, +32767] without branching.
+Use the repository's established saturation helper or an explicit clamp. Do not
+assume `__SSAT()` is faster than a manual clamp until the exact compiled target
+path is measured.
 
 ```c
 int32_t q16_accumulator = acc + (a * b);  // might overflow
 int32_t q16_clipped = __SSAT(q16_accumulator, 32);
 ```
 
-This is a one-instruction operation on Cortex-M4; a manual `if (x > max) x = max` branch is slower.
+
 
 ### Inline Assembly (Use Sparingly)
 

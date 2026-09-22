@@ -2,6 +2,12 @@
 
 ## Scope
 
+Stateful DSP must remain deterministic at the audio boundary. Compute
+coefficients and control mappings before the block when possible, publish them
+with the repository's thread-safe mailbox pattern, and keep recursive state
+owned by the audio path. Never introduce allocation, I/O, or unbounded work into
+feedback processing.
+
 Rules for code executed in the SP-1 audio path (I2S callback, audio thread).
 
 ## Non-Negotiable Rules

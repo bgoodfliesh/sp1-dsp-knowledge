@@ -50,6 +50,18 @@ Depending on the DSP algorithm, prepare evidence from some or all of these categ
 - **CPU cost** (HARDWARE-MEASURED on real SP-1): peak and average cycle count per sample, per block
 - **RAM usage**: static state size, temporary buffer size, stack depth
 - **Flash size**: code + read-only data from `-Os` build
+- **Approximation comparison**: when choosing LUT, interpolation, polynomial,
+  piecewise, or reciprocal implementations, compare equivalent outputs using
+  the same error criteria and target timing method
+
+### Stateful and nonlinear systems
+
+For recursive maps, resonators, and nonlinear feedback, also record:
+
+- cycle length, dead states, fixed points, and seed sensitivity;
+- boundedness, saturation, overflow, and recovery after saturation;
+- DC bias, autocorrelation, spectral behavior, and pitch correspondence;
+- parameter cliffs, mode locking, self-oscillation, and modulation stability.
 
 ### SP-1 Hardware Execution
 

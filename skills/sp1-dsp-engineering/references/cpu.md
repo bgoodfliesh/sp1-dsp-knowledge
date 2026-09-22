@@ -48,8 +48,8 @@ When implementing a new filter or effect:
 Component: Two-pole IIR filter
 
 ESTIMATE (theoretical):
-  - per-sample: 2 multiply + 3 add + 1 shift = ~6 cycles (THEORETICAL, nRF52840 specific)
-  - per block: coefficient recalc (if parameter change) = exp() + 2× sqrt() ≈ 500 cycles (THEORETICAL)
+  - per-sample: 2 multiply + 3 add + 1 shift (operation count only; runtime is UNMEASURED)
+  - per block: coefficient recalc (if parameter change) = exp() + 2× sqrt() (runtime is UNMEASURED)
 
 COMPILED:
   - `-Os` binary size: ~40 B instruction + 16 B state (verified via `size` / ELF)

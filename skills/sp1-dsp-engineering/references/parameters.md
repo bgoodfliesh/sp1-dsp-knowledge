@@ -44,7 +44,7 @@ Before audio-rate evaluation of an expensive function (exp, sqrt, sin, etc.):
 2. **Compute on parameter change** — if parameter changes rarely (user tweaks knob), recompute only then
 3. **Compute at control rate** — if parameter changes regularly (LFO modulation, envelope), recompute every ~10 ms (Zephyr control tick)
 4. **Compute at block rate** — if parameter must update more frequently, recompute every ~5 ms (audio block boundary)
-5. **Lookup table** — if computation is still expensive, precompute a 256-entry or 1024-entry table; map control input to table index
+5. **Lookup table or approximation** — if computation is still expensive, compare a table, interpolation, piecewise mapping, and polynomial against the target cost and error budget
 6. **Compute at audio rate** — only if truly necessary (e.g., very high-rate FM modulation); measure the cost on real hardware
 
 ## Perceptual Resolution
@@ -78,7 +78,7 @@ Smoothing: 1-pole slew filter with ~100 Hz update rate prevents clicks
 
 Coefficient computation:
   α = 1 - exp(−2π * fc / fs)  # fs = 48 kHz
-  (expensive: lookup table, 256 entries log-spaced)
+  (expensive: candidate for lookup or another approximation; profile the alternatives)
 
 Audio-rate usage:
   y[n] = y[n-1] + α * (x[n] - y[n-1])  # one multiply, one add per sample
