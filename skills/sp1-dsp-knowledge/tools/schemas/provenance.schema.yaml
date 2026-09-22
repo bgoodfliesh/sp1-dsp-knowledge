@@ -1,0 +1,15 @@
+schema_version: 1
+title: SP-1 DSP provenance metadata
+required:
+  - component
+  - status
+  - provenance_kind
+  - sources
+properties:
+  component: string
+  status:
+    enum: [RESEARCH, REFERENCE, EXPERIMENTAL, REFERENCE-VALIDATED, SP1-COMPILES, SP1-TESTED, SP1-BENCHMARKED, PRODUCTION]
+  provenance_kind:
+    enum: [original-algorithm, adapted-algorithm, derivative-implementation, independent-reimplementation, reference-only]
+  sources: list
+  validation: object

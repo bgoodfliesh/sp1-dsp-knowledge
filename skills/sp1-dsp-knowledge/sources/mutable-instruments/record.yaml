@@ -1,0 +1,21 @@
+schema_version: 1
+id: mutable-instruments-eurorack
+project: Mutable Instruments Eurorack Modules
+canonical_url: https://github.com/pichenettes/eurorack
+revision_or_release: 08460a69a7e1f7a81c5a2abcc7189c9a6b7208d4
+license: "Mixed: STM32 MIT, AVR GPL-3.0, hardware CC-BY-SA-3.0"
+license_url: https://github.com/pichenettes/eurorack#guidelines-for-derivative-works
+status: REFERENCE
+relevant_modules:
+  - "Module-specific DSP under stm32f* projects"
+  - "Shared DSP and utility code where applicable"
+hardware_independent_parts:
+  - "Algorithm equations and state updates after separating hardware I/O"
+  - "Parameter mapping only after documenting the original control-rate assumptions"
+hardware_assumptions:
+  - "Original STM32 audio callback, ADC/DAC scaling, memory layout, and sample rate"
+reuse_allowed: "Potentially, subject to file-level license review"
+reuse_boundary: "Prefer an independent SP-1 implementation informed by documented algorithms; do not port complete modules blindly."
+known_ports_or_independent_implementations: []
+sp1_relevance: "High for algorithm research; target integration must be treated as a separate engineering task."
+notes: "The upstream README says Mutable Instruments is a registered trademark and gives derivative-work naming guidance."

@@ -1,0 +1,21 @@
+schema_version: 1
+id: math-approx
+project: math_approx
+canonical_url: https://github.com/Chowdhury-DSP/math_approx
+revision_or_release: e1614a45185738bd6085a7693e69a59b5f6f7eab
+license: BSD-3-Clause
+license_url: https://github.com/Chowdhury-DSP/math_approx
+status: REFERENCE
+relevant_modules:
+  - "Polynomial approximations for trigonometric and nonlinear functions"
+  - "Scalar and SIMD-compatible templates"
+  - "Accuracy tests using absolute error, relative error, and ULP distance"
+hardware_independent_parts:
+  - "Approximation formulas and their documented derivation artifacts"
+hardware_assumptions:
+  - "Primarily tested with single precision; C++17/20 and optional XSIMD compatibility"
+reuse_allowed: "BSD-3-Clause with required notices"
+reuse_boundary: "Use only after domain, error, denormal, and audible-artifact tests for the SP-1 workload."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Candidate optimization only after profiling identifies transcendental math as a bottleneck."
+notes: "Upstream explicitly states that higher approximation order trades performance for accuracy."

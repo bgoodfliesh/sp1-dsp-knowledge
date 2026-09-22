@@ -1,0 +1,19 @@
+# Build products and local tooling
+build/
+out/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.elf
+*.bin
+*.hex
+
+# Local benchmark output
+benchmarks/results/
+
+# Editor and OS files
+.DS_Store
+.vscode/
+.idea/

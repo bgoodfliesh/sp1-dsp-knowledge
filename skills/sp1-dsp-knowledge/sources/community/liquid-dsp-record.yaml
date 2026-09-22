@@ -1,0 +1,21 @@
+schema_version: 1
+id: liquid-dsp
+project: liquid-dsp
+canonical_url: https://github.com/jgaeddert/liquid-dsp
+revision_or_release: d61cf506d427439f2ce38bf556362ad7a7aa8fa0
+license: "See upstream LICENSE"
+license_url: https://github.com/jgaeddert/liquid-dsp
+status: REFERENCE
+relevant_modules:
+  - "FIR and polyphase filter/interpolator modules"
+  - "Filter design, oscillators, synchronizers, and complex math"
+  - "Autotests and benchmarks"
+hardware_independent_parts:
+  - "Individual C kernels after documenting object lifetime and buffer contracts"
+hardware_assumptions:
+  - "Optional SIMD, FFTW, threads, logging, and dynamic library/build features"
+reuse_allowed: "Verify upstream license and selected files"
+reuse_boundary: "Keep allocation/configuration off the audio callback; select minimal modules and disable unnecessary features."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Strong research candidate for resampling and low-dependency signal-processing primitives."
+notes: "Upstream reports extensive autotest coverage; that evidence does not transfer automatically to SP-1."

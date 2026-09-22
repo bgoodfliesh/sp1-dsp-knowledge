@@ -1,0 +1,115 @@
+schema_version: 1
+papers:
+  - id: fang-2003-fixed-point-static-analysis
+    citation: "Fang, Rutenbar, Chen (2003), ICCAD-2003, 275-282"
+    doi: 10.1109/ICCAD.2003.159701
+    url: https://doi.org/10.1109/ICCAD.2003.159701
+    access: "DOI/IEEE Xplore; open preprint location not yet pinned"
+    status: RESEARCH
+    topics: [fixed-point, quantization, overflow, static-analysis, DSP]
+    repository_targets:
+      - knowledge/numeric.md
+      - tools/templates/validation.md
+    sp1_hypothesis: "May inform pre-hardware range and finite-precision analysis."
+    required_local_evidence:
+      - "Compare predicted ranges with exhaustive or property-based test vectors."
+      - "Measure quantization and limit-cycle behavior for recursive components."
+      - "Repeat analysis at each supported Q format and sample-rate configuration."
+  - id: agarwal-rawat-2016-fixed-point-lattice-wdf
+    citation: "Agarwal and Rawat (2016), Radioengineering 25, 821-829"
+    doi: 10.13164/re.2016.0821
+    url: https://doi.org/10.13164/re.2016.0821
+    full_text_url: https://www.radioeng.cz/fulltexts/2016/16_04_0821_0829.pdf
+    access: open
+    status: RESEARCH
+    topics: [fixed-point, wave-digital-filters, lattice, stability, VLSI]
+    repository_targets:
+      - knowledge/numeric.md
+      - algorithms/nonlinear/
+    sp1_hypothesis: "May provide fixed-point WDF topology and throughput comparison techniques."
+    required_local_evidence:
+      - "Validate stability under SP-1 word length, scaling, and saturation."
+      - "Compare loop latency and CPU cost against a floating-point reference."
+      - "Test parameter changes and nonlinear excitation at audio rates."
+  - id: chiper-paleologu-2023-efficient-dsp-architectures
+    citation: "Chiper and Paleologu (2023), Electronics 12(4), 1012"
+    doi: 10.3390/electronics12041012
+    url: https://doi.org/10.3390/electronics12041012
+    full_text_url: https://www.mdpi.com/2079-9292/12/4/1012
+    access: open
+    status: RESEARCH
+    topics: [embedded, realtime, architecture, optimization, deterministic-timing]
+    repository_targets:
+      - knowledge/architecture.md
+      - knowledge/realtime.md
+      - knowledge/optimization.md
+    sp1_hypothesis: "May inform bounded audio/control architecture and optimization experiments."
+    required_local_evidence:
+      - "Measure worst-case, not only average, callback execution time."
+      - "Document event handling, buffering, synchronization, and failure paths."
+      - "Benchmark the selected architecture on the actual SP-1 hardware."
+  - id: bencina-realtime-audio-101
+    citation: "Bencina, Real-time audio programming 101: time waits for nothing"
+    url: http://www.rossbencina.com/code/real-time-audio-programming-101-time-waits-for-nothing
+    status: RESEARCH
+    topics: [realtime, audio-thread, callbacks, lock-free, spsc, scheduling]
+    repository_targets:
+      - knowledge/realtime.md
+      - knowledge/architecture.md
+    sp1_hypothesis: "May inform callback safety and control/audio thread boundaries."
+    required_local_evidence:
+      - "Document forbidden callback operations and ownership rules."
+      - "Test queue memory ordering, overflow, reset, and worst-case behavior."
+      - "Measure callback deadline margin on SP-1 hardware."
+  - id: smith-limit-cycles
+    citation: "Smith, Introduction to Digital Filters: Limit Cycles"
+    url: https://ccrma.stanford.edu/~jos/filters/Limit_Cycles.html
+    status: RESEARCH
+    topics: [fixed-point, recursive-filters, limit-cycles, quantization]
+    repository_targets:
+      - knowledge/numeric.md
+      - algorithms/filters/
+    sp1_hypothesis: "May inform zero-input and finite-word-length filter tests."
+    required_local_evidence:
+      - "Confirm the canonical accessible source and version."
+      - "Test zero-input oscillation and impulse decay across Q formats."
+      - "Compare rounding, truncation, saturation, and error-feedback choices."
+  - id: simper-svf-linear-trapezoidal
+    citation: "Simper, Solving the continuous SVF equations using trapezoidal integration"
+    url: https://www.cytomic.com/files/dsp/SvfLinearTrapOptimised2.pdf
+    status: RESEARCH
+    topics: [state-variable-filter, trapezoidal-integration, stability, modulation]
+    repository_targets:
+      - algorithms/filters/
+      - knowledge/numeric.md
+    sp1_hypothesis: "May provide an efficient SVF reference for SP-1 comparisons."
+    required_local_evidence:
+      - "Compare frequency, resonance, and modulation response to a trusted reference."
+      - "Test finite-precision stability and coefficient update edge cases."
+      - "Measure CPU, RAM, latency, and artifacts on target."
+  - id: smith-wave-digital-filters
+    citation: "Smith, Wave Digital Filters, Physical Audio Signal Processing"
+    url: https://ccrma.stanford.edu/~jos/pasp/Wave_Digital_Filters.html
+    status: RESEARCH
+    topics: [wave-digital-filters, passivity, bilinear-transform, scattering]
+    repository_targets:
+      - algorithms/nonlinear/
+      - knowledge/numeric.md
+    sp1_hypothesis: "May inform passive circuit-model structures and WDF validation."
+    required_local_evidence:
+      - "Test finite-word-length and nonlinear stability."
+      - "Compare delay-loop structure and CPU against alternate topologies."
+      - "Document parameter modulation and saturation behavior."
+  - id: verhelst-roelands-1993-wsola
+    citation: "Verhelst and Roelands (1993), An Overlap-Add Technique Based on Waveform Similarity"
+    url: http://www.etro.vub.ac.be/research/dssp/PUB_FILES/int_conf/ICASSP-1993.pdf
+    status: RESEARCH
+    topics: [wsola, time-stretching, overlap-add, cross-correlation, granular]
+    repository_targets:
+      - algorithms/granular/
+      - effects/experimental/
+    sp1_hypothesis: "May provide a time-stretch reference with controllable quality/latency tradeoffs."
+    required_local_evidence:
+      - "Obtain and pin an accessible authoritative copy before implementation."
+      - "Measure correlation-search CPU, buffering RAM, and algorithmic latency."
+      - "Evaluate transient, periodic, and noisy material for artifacts."

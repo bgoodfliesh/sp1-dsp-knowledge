@@ -1,0 +1,23 @@
+schema_version: 1
+id: daisysp
+project: DaisySP
+canonical_url: https://github.com/electro-smith/DaisySP
+revision_or_release: 599511b740f8f3a9b8db72a0642aa45b8a23c3a3
+license: MIT
+license_url: https://github.com/electro-smith/DaisySP/blob/master/LICENSE
+status: REFERENCE
+relevant_modules:
+  - "Filters"
+  - "Oscillators"
+  - "Effects"
+  - "Dynamics and envelope utilities"
+  - "Physical modeling and synthesis modules"
+hardware_independent_parts:
+  - "Most module algorithms and state machines"
+hardware_assumptions:
+  - "DaisySP examples assume a host application supplies audio buffers and sample rate"
+reuse_allowed: "MIT permits reuse with required notice"
+reuse_boundary: "Select and document individual modules; verify sample-rate, initialization, allocation, and parameter-update behavior for SP-1."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Useful comparison and reference source for small composable C++ DSP blocks."
+notes: "Upstream build is a library build; examples are in the separate DaisyExamples repository."

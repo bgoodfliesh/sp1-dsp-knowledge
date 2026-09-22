@@ -1,0 +1,21 @@
+schema_version: 1
+id: libsamplerate
+project: libsamplerate / Secret Rabbit Code
+canonical_url: https://github.com/libsndfile/libsamplerate
+revision_or_release: 0844c208f683527c08ea8a80acc13b398aa9c8bf
+license: "See upstream LICENSE"
+license_url: https://github.com/libsndfile/libsamplerate
+status: REFERENCE
+relevant_modules:
+  - "Sinc sample-rate converters"
+  - "Streaming and callback APIs"
+  - "Tests and examples"
+hardware_independent_parts:
+  - "Polyphase/sinc filter mathematics and state transitions"
+hardware_assumptions:
+  - "ANSI C, build-system portability, converter-specific state and latency"
+reuse_allowed: "Verify upstream license and source notices"
+reuse_boundary: "Separate converter creation from streaming process; document latency, ratio limits, scratch/state RAM, and callback safety."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Candidate for high-quality resampling when measured cost and latency fit."
+notes: "Upstream README identifies version 0.2.2 and provides tests; this record pins the observed repository commit."

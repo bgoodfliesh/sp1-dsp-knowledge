@@ -1,0 +1,106 @@
+schema_version: 1
+sources:
+  - id: mutable-instruments
+    directory: mutable-instruments
+    project: Mutable Instruments
+    url: "https://github.com/pichenettes/eurorack"
+    revision: "08460a69a7e1f7a81c5a2abcc7189c9a6b7208d4 (master, observed 2026-09-21)"
+    license: "Mixed: STM32 projects MIT; AVR projects GPL-3.0; hardware CC-BY-SA-3.0"
+    status: REFERENCE
+    notes: "License and hardware guidance are from the upstream README. Review file-level notices and derivative-work naming guidance before reuse."
+  - id: daisysp
+    directory: daisysp
+    project: DaisySP
+    url: "https://github.com/electro-smith/DaisySP"
+    revision: "599511b740f8f3a9b8db72a0642aa45b8a23c3a3 (master, observed 2026-09-21)"
+    license: "MIT"
+    status: REFERENCE
+    notes: "Portable C++ DSP modules; upstream explicitly permits closed-source and commercial use without warranty."
+  - id: faust
+    directory: faust
+    project: Faust
+    url: "https://github.com/grame-cncm/faustlibraries"
+    revision: "36661b5efd702e0e21b3ad49864e10201aecc602 (master, observed 2026-09-21)"
+    license: "Inspect repository and individual file headers before reuse"
+    status: REFERENCE
+    notes: "DSP library definitions and documentation for Faust. Treat generated code, library definitions, and documentation as separate provenance items."
+  - id: cmsis-dsp
+    directory: cmsis-dsp
+    project: CMSIS-DSP
+    url: "https://github.com/ARM-software/CMSIS-DSP"
+    revision: "83a2d7bc98c81b4bbe4a6f48b1f2ecf179868a0b (main, observed 2026-09-21)"
+    license: "See upstream LICENSE and per-file notices"
+    status: REFERENCE
+    notes: "Optimized Cortex-M/Cortex-A kernels. Record selected datatype, core extensions, compiler flags, memory placement, and benchmark conditions."
+  - id: stmlib
+    directory: stmlib
+    project: stmlib
+    url: "https://github.com/pichenettes/stmlib"
+    revision: "d18def816c51d1da0c108236928b2bbd25c17481 (master, observed 2026-09-21)"
+    license: "Mixed: project code MIT; third_party/STM has STMicroelectronics notice; programming/serial contains GPL code"
+    status: REFERENCE
+    notes: "Mutable Instruments STM32 project template, makefile, and libraries. Do not assume the repository-wide MIT notice applies to third_party or programming/serial."
+  - id: community
+    directory: community
+    project: Community references
+    url: "https://github.com/thestk/stk"
+    revision: "6aacd357d76250bb7da2b1ddf675651828784bbc (master, observed 2026-09-21)"
+    license: "See upstream LICENSE and class-level notices"
+    status: REFERENCE
+    notes: "STK is a portable C++ synthesis/audio-processing reference. Preserve attribution and investigate patent notes before adapting physical-model techniques."
+  - id: liquid-dsp
+    directory: community/liquid-dsp
+    project: liquid-dsp
+    url: "https://github.com/jgaeddert/liquid-dsp"
+    revision: "d61cf506d427439f2ce38bf556362ad7a7aa8fa0 (master, observed 2026-09-21)"
+    license: "See upstream LICENSE"
+    status: REFERENCE
+    notes: "C library for embedded-oriented SDR/DSP; libc/libm baseline with optional SIMD, FFTW, threading, logging, autotests, and benchmarks."
+  - id: chowdsp-wdf
+    directory: community/chowdsp-wdf
+    project: chowdsp_wdf
+    url: "https://github.com/Chowdhury-DSP/chowdsp_wdf"
+    revision: "43bcd295e8403de913f9966f4fd7ff9d17c9f1a5 (main, observed 2026-09-21)"
+    license: "BSD-3-Clause"
+    status: REFERENCE
+    notes: "Header-only C++14+ Wave Digital Filter library; optional XSIMD; useful for circuit-model research, not yet an SP-1 fit."
+  - id: libsamplerate
+    directory: community/libsamplerate
+    project: libsamplerate (Secret Rabbit Code)
+    url: "https://github.com/libsndfile/libsamplerate"
+    revision: "0844c208f683527c08ea8a80acc13b398aa9c8bf (master, observed 2026-09-21)"
+    license: "See upstream LICENSE"
+    status: REFERENCE
+    notes: "C sample-rate conversion library with sinc, callback, streaming, tests, and multiple build systems; audit allocation behavior for realtime use."
+  - id: kfr
+    directory: community/kfr
+    project: KFR
+    url: "https://github.com/kfrlib/kfr"
+    revision: "ae278e782483f2b75914a6d0a6d715189aacfd93 (main, observed 2026-09-21)"
+    license: "GPLv2+ or commercial license"
+    status: REFERENCE
+    notes: "High-performance C++ DSP framework with SIMD and expression-template facilities; licensing may exclude proprietary SP-1 use without a commercial license."
+  - id: pffft
+    directory: community/pffft
+    project: PFFFT
+    url: "https://github.com/marton78/pffft"
+    revision: "e1dbebc9fbf74247d12f094accbbc470aaee8715 (master, observed 2026-09-21)"
+    license: "BSD-like; inspect bundled FFTPACK and file notices"
+    status: REFERENCE
+    notes: "Small single-precision FFT and fast convolution code with scalar/SSE/AVX/NEON/Altivec/WASM SIMD paths."
+  - id: math-approx
+    directory: community/math-approx
+    project: math_approx
+    url: "https://github.com/Chowdhury-DSP/math_approx"
+    revision: "e1614a45185738bd6085a7693e69a59b5f6f7eab (main, observed 2026-09-21)"
+    license: "BSD-3-Clause"
+    status: REFERENCE
+    notes: "Header-only C++ approximation library; accuracy/performance tradeoffs and single-precision focus require component-level validation."
+  - id: earlevel-biquad
+    directory: community/earlevel-biquad
+    project: EarLevel Biquad reference
+    url: "https://github.com/earlevel/EarLevelSource/tree/master/Biquad"
+    revision: "Unavailable from the supplied URL at ingestion time"
+    license: "TBD; inspect current canonical source before reuse"
+    status: RESEARCH
+    notes: "Reference lead only. Do not copy or rely on licensing until the repository/path is independently confirmed."

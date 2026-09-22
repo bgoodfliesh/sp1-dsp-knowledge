@@ -1,0 +1,20 @@
+schema_version: 1
+id: kfr
+project: KFR
+canonical_url: https://github.com/kfrlib/kfr
+revision_or_release: ae278e782483f2b75914a6d0a6d715189aacfd93
+license: GPLv2+ or commercial license
+license_url: https://kfrlib.com/purchase
+status: REFERENCE
+relevant_modules:
+  - "SIMD and expression-template pipelines"
+  - "FIR, IIR, convolution, FFT, and audio filtering"
+hardware_independent_parts:
+  - "Algorithmic expressions after isolating framework/runtime dependencies"
+hardware_assumptions:
+  - "Modern C++20 toolchains and supported SIMD backends"
+reuse_allowed: "GPL/commercial terms require an explicit product decision"
+reuse_boundary: "Use as a design reference or dependency only after licensing, code size, compiler, and target support are resolved."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Useful for studying loop fusion and SIMD organization; potentially unsuitable for proprietary firmware without commercial terms."
+notes: "The upstream README describes GPLv2+ and a commercial license."

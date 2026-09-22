@@ -1,0 +1,23 @@
+schema_version: 1
+id: cmsis-dsp
+project: CMSIS-DSP
+canonical_url: https://github.com/ARM-software/CMSIS-DSP
+revision_or_release: 83a2d7bc98c81b4bbe4a6f48b1f2ecf179868a0b
+license: "See upstream LICENSE and per-file notices"
+license_url: https://github.com/ARM-software/CMSIS-DSP/blob/main/LICENSE
+status: REFERENCE
+relevant_modules:
+  - "Filtering"
+  - "Transforms including FFT, MFCC, and DCT"
+  - "Basic math, statistics, and matrix operations"
+  - "f64, f32, f16, q31, q15, and q7 variants"
+hardware_independent_parts:
+  - "Algorithmic kernels when datatype and alignment contracts are preserved"
+hardware_assumptions:
+  - "Cortex-M/Cortex-A core and optional Helium/Neon extensions"
+  - "Compiler flags, FPU selection, memory speed, and alignment affect performance"
+reuse_allowed: "Verify upstream license and selected files"
+reuse_boundary: "Use kernels as dependencies only when SP-1 architecture, ABI, datatype, and measured cost are documented."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Candidate for measured low-level primitives, not a substitute for effect-level validation."
+notes: "Upstream documents -O3 -ffast-math for performance and warns that compiler and memory choices materially affect results."

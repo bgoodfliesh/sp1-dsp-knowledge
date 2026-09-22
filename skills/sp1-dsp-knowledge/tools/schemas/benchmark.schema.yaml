@@ -1,0 +1,23 @@
+schema_version: 1
+title: SP-1 DSP benchmark metadata
+required:
+  - firmware_commit
+  - implementation_version
+  - sample_rate
+  - block_size
+  - channel_count
+  - compiler_toolchain
+  - optimization_settings
+  - cpu_measurement_method
+  - hardware_configuration
+properties:
+  firmware_commit: string
+  implementation_version: string
+  sample_rate: number
+  block_size: integer
+  channel_count: integer
+  compiler_toolchain: string
+  optimization_settings: string
+  cpu_measurement_method: string
+  ram_usage: string
+  hardware_configuration: string

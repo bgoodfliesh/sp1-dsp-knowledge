@@ -1,0 +1,21 @@
+schema_version: 1
+id: faustlibraries
+project: Faust DSP Libraries
+canonical_url: https://github.com/grame-cncm/faustlibraries
+revision_or_release: 36661b5efd702e0e21b3ad49864e10201aecc602
+license: "Inspect repository and individual file headers"
+license_url: https://github.com/grame-cncm/faustlibraries
+status: REFERENCE
+relevant_modules:
+  - "Library definitions in libraries/"
+  - "Documentation in doc/docs/"
+  - "Generated artifacts are not source provenance"
+hardware_independent_parts:
+  - "Documented DSP equations and combinators"
+hardware_assumptions:
+  - "Generated implementation depends on Faust compiler target and settings"
+reuse_allowed: "TBD after file-level license review"
+reuse_boundary: "Use as algorithm/reference material unless a specific definition and its license are recorded."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Useful for comparing canonical DSP structures and parameter semantics."
+notes: "The upstream README warns that docs are generated under docs/ and source documentation belongs under doc/docs/."

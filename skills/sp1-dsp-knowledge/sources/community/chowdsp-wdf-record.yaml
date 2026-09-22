@@ -1,0 +1,20 @@
+schema_version: 1
+id: chowdsp-wdf
+project: chowdsp_wdf
+canonical_url: https://github.com/Chowdhury-DSP/chowdsp_wdf
+revision_or_release: 43bcd295e8403de913f9966f4fd7ff9d17c9f1a5
+license: BSD-3-Clause
+license_url: https://opensource.org/licenses/BSD-3-Clause
+status: REFERENCE
+relevant_modules:
+  - "Wave Digital Filter circuit elements and tree adaptors"
+  - "Optional XSIMD vectorized processing"
+hardware_independent_parts:
+  - "Circuit topology and scattering/state equations"
+hardware_assumptions:
+  - "C++14 or higher; optional XSIMD; compile-time topology"
+reuse_allowed: "BSD-3-Clause with required notices"
+reuse_boundary: "Prototype and compare circuit models; measure generated code and avoid assuming template composition is zero-cost on SP-1."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Useful for nonlinear and analog-modeling research, especially distortion and filters."
+notes: "The upstream project describes itself as header-only and provides academic citations."

@@ -1,0 +1,15 @@
+schema_version: 1
+component: "TBD"
+implementation_version: "TBD"
+claim: "TBD"
+test_kind: reference-comparison
+environment: "TBD"
+sample_rate: "TBD"
+block_size: "TBD"
+channel_count: "TBD"
+input_vectors: "TBD"
+expected_output_or_invariant: "TBD"
+tolerance: "TBD"
+result: NOT_RUN
+evidence: "TBD"
+limitations: "TBD"

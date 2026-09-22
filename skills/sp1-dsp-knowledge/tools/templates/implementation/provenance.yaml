@@ -1,0 +1,19 @@
+schema_version: 1
+component: "TBD"
+status: RESEARCH
+provenance_kind: reference-only
+algorithm_origin: "TBD"
+sources:
+  - project: "TBD"
+    url: "TBD"
+    revision: "TBD"
+    license: "TBD"
+    relationship: "reference"
+    reused_files: []
+    notes: "TBD"
+sp1_adaptations: []
+validation:
+  reference: NOT_RUN
+  target_compile: NOT_RUN
+  target_test: NOT_RUN
+  hardware_benchmark: NOT_RUN

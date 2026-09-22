@@ -1,0 +1,18 @@
+schema_version: 1
+id: earlevel-biquad
+project: EarLevel Biquad reference
+canonical_url: https://github.com/earlevel/EarLevelSource/tree/master/Biquad
+revision_or_release: unavailable
+license: "TBD; source URL returned 404 during ingestion"
+license_url: https://github.com/earlevel/EarLevelSource
+status: RESEARCH
+relevant_modules:
+  - "Biquad coefficient and process reference"
+hardware_independent_parts:
+  - "Direct-form filter equations, coefficient normalization, and state update concepts"
+hardware_assumptions: []
+reuse_allowed: "Not established"
+reuse_boundary: "Reference only until canonical repository, revision, and license are confirmed."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Potentially useful for a minimal filter comparison, but not yet an approved source."
+notes: "Do not copy code from this lead until provenance is resolved."

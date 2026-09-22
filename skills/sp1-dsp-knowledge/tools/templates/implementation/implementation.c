@@ -1,0 +1,1 @@
+/* Component implementation placeholder. Keep the public contract small. */

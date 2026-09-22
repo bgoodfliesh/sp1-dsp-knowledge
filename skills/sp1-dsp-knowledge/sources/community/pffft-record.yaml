@@ -1,0 +1,22 @@
+schema_version: 1
+id: pffft
+project: PFFFT
+canonical_url: https://github.com/marton78/pffft
+revision_or_release: e1dbebc9fbf74247d12f094accbbc470aaee8715
+license: "BSD-like; inspect bundled FFTPACK and file notices"
+license_url: https://github.com/marton78/pffft
+status: REFERENCE
+relevant_modules:
+  - "Single-precision real and complex 1D FFT"
+  - "PFFASTCONV fast convolution"
+  - "PFDSP mixing and carrier helpers"
+hardware_independent_parts:
+  - "FFT and convolution algorithms with documented buffer contracts"
+hardware_assumptions:
+  - "SIMD feature selection: SSE, AVX, NEON, Altivec, or WASM SIMD"
+  - "Alignment, scratch buffers, precision, and transform sizes"
+reuse_allowed: "Verify BSD-like terms and bundled FFTPACK notices"
+reuse_boundary: "Measure initialization/scratch allocation separately from audio processing and validate ARM target SIMD behavior."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Strong candidate for small spectral or convolution components where CMSIS-DSP is not a fit."
+notes: "Upstream describes a C API and optional C++ wrapper; current repository has more than the historical two-file layout."

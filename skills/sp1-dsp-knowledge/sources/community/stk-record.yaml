@@ -1,0 +1,22 @@
+schema_version: 1
+id: stk
+project: The Synthesis ToolKit in C++
+canonical_url: https://github.com/thestk/stk
+revision_or_release: 6aacd357d76250bb7da2b1ddf675651828784bbc
+license: "See upstream LICENSE and class-level notices"
+license_url: https://github.com/thestk/stk/blob/master/LICENSE
+status: REFERENCE
+relevant_modules:
+  - "Portable synthesis and audio-processing classes"
+  - "Physical modeling and modal synthesis examples"
+  - "StkFrames multichannel/vectorized audio interface"
+hardware_independent_parts:
+  - "Core unit-generator algorithms and state transitions"
+hardware_assumptions:
+  - "Realtime I/O, MIDI, sockets, threads, and mutexes are platform-dependent"
+  - "Original project prioritizes portability and education rather than SP-1 optimization"
+reuse_allowed: "Verify license and class-level notices"
+reuse_boundary: "Use as documented algorithm reference; independently validate stability, patents, CPU, and memory before adaptation."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Reference source for synthesis, physical modeling, and multichannel API ideas."
+notes: "Upstream notes that some techniques may be covered by patents and that the toolkit is not guaranteed production software."

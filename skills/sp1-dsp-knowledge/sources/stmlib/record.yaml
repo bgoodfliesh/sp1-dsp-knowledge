@@ -1,0 +1,20 @@
+schema_version: 1
+id: stmlib
+project: stmlib
+canonical_url: https://github.com/pichenettes/stmlib
+revision_or_release: d18def816c51d1da0c108236928b2bbd25c17481
+license: "Mixed: project code MIT; third_party/STM has ST notice; programming/serial contains GPL code"
+license_url: https://github.com/pichenettes/stmlib/blob/master/LICENSE
+status: REFERENCE
+relevant_modules:
+  - "Shared STM32 project template and makefile"
+  - "Mutable Instruments support libraries"
+hardware_independent_parts:
+  - "Selected math and DSP helpers after isolating MCU dependencies"
+hardware_assumptions:
+  - "STM32F project layout, startup/runtime, peripherals, and toolchain"
+reuse_allowed: "MIT for applicable project code; separately review embedded third-party code"
+reuse_boundary: "Do not import the build/runtime layer into SP-1 without an explicit architecture decision."
+known_ports_or_independent_implementations: []
+sp1_relevance: "Useful for understanding Mutable Instruments implementation constraints and separating DSP from firmware plumbing."
+notes: "The upstream license explicitly calls out third_party/STM and programming/serial exceptions."
