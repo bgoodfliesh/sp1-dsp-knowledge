@@ -3,6 +3,16 @@
 Statuses are ordered evidence gates, not quality labels. A component may use
 the highest status it has earned and should list missing evidence explicitly.
 
+Evidence labels are orthogonal to lifecycle status:
+
+| Evidence label | Meaning |
+| --- | --- |
+| `VERIFIED` | Supported by reliable technical evidence or target measurement. |
+| `DERIVED` | Follows from established theory but is not target-validated. |
+| `ESTIMATED` | Plausible estimate, not a measurement. |
+| `HYPOTHESIS` | Proposed behavior worth testing. |
+| `UNKNOWN` | Insufficient evidence. |
+
 | Status | Meaning |
 | --- | --- |
 | `RESEARCH` | References and problem understanding are being collected; no implementation claim. |

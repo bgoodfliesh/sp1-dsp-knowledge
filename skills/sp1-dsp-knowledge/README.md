@@ -79,6 +79,14 @@ global state, copied upstream modules, or one-off app-specific abstractions to
 make an example work. When a component needs device integration, document the
 boundary and leave the integration to the firmware repository.
 
+## Experimental knowledge
+
+The candidate queue in
+[`knowledge/experiments.md`](knowledge/experiments.md) is intentionally
+hypothesis-driven. It separates reusable questions from verified components
+such as CloudVerb. Failure regions, finite-precision cycles, and unsupported
+performance claims should be recorded rather than silently promoted.
+
 ## Current scope
 
 This is an initial architecture skeleton. It intentionally contains no large
