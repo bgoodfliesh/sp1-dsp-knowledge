@@ -7,7 +7,7 @@ if ! command -v copier >/dev/null 2>&1; then
 fi
 
 template_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/sp1-template.XXXXXX")
+tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/basic-firmware-template.XXXXXX")
 trap 'rm -rf "$tmp_dir"' EXIT HUP INT TERM
 
 copier copy --defaults --trust "$template_dir" "$tmp_dir/project"

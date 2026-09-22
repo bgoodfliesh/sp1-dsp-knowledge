@@ -1,0 +1,35 @@
+# Curated references for firmware and plugin development.
+#
+# Add or update entries here when a skill/knowledgebase moves. Keep the
+# repository URL, ref, and path separate so consumers can display or fetch
+# exactly the intended version.
+
+knowledge_sources:
+  - id: sp1-dsp-engineering
+    name: SP-1 DSP engineering skills
+    url: https://github.com/bgoodfliesh/sp1-dsp-knowledge
+    ref: sp1-dev-skills
+    path: skills/sp1-dsp-engineering
+    purpose: DSP architecture, implementation patterns, and SP-1 audio guidance
+    status: active
+  - id: sp1-firmware
+    name: SP-1 firmware skills
+    url: https://github.com/bgoodfliesh/sp1-dsp-knowledge
+    ref: sp1-dev-skills
+    path: skills/sp1-firmware
+    purpose: Firmware, hardware, storage, controls, and system integration guidance
+    status: active
+  - id: sp1-ui-ux
+    name: SP-1 UI/UX skills
+    url: https://github.com/bgoodfliesh/sp1-dsp-knowledge
+    ref: sp1-dev-skills
+    path: skills/sp1-ui-ux
+    purpose: Physical controls, interaction grammar, and interface validation
+    status: active
+  - id: sp1-dsp-knowledge
+    name: SP-1 DSP knowledgebase
+    url: https://github.com/bgoodfliesh/sp1-dsp-knowledge
+    ref: sp1-dsp-knowledge
+    path: skills/sp1-dsp-knowledge
+    purpose: Generic DSP algorithms, proven effects, experiments, and evidence
+    status: active

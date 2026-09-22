@@ -9,7 +9,7 @@ Guided project generator for custom Teenage Engineering SP-1 firmware using the 
 pipx install copier
 
 # from a local checkout
-copier copy /path/to/sp1-template my-project
+copier copy /path/to/basic-firmware-template my-project
 
 # once this template is published
 copier copy <template-repository-url> my-project
